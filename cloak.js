@@ -10,12 +10,12 @@
         verificationDelay: 5000,
         // Add your Adsterra keys here when ready
         adsterraKeys: {
-            popunder: 'YOUR_POPUNDER_KEY',
-            banner728: 'YOUR_BANNER_728_KEY',
-            banner300: 'YOUR_BANNER_300_KEY',
-            native: 'YOUR_NATIVE_KEY',
-            vignette: 'YOUR_VIGNETTE_KEY',
-            social: 'YOUR_SOCIAL_BAR_KEY'
+            popunder: '1dbd5ebe1a368411ad2e5516ef8e28b2',
+            banner728: '82c5cd0a5e66ed8a4506322eb5dcabe6',
+            banner300: 'a16e0a50d324a0f76a48b9c0ac14ab53',
+            native: '0b47e264c54dcdd189ae8ade9488c831',
+            vignette: 'e4cc9221b1fdf9169e495dd070072d5d',
+            social: 'f27f8c4e7ac5ca05244122659bddba7d'
         }
     };
     
