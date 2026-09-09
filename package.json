@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prebuild": "node scripts/generate-seo.mjs",
+    "postbuild": "node scripts/generate-static-pages.mjs"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.170.0",

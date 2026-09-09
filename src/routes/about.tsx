@@ -1,17 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/layout";
+import { NativeBanner } from "@/components/ads/adsterra";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
-  head: () => ({
-    meta: [
-      { title: "About — Hearth" },
-      {
-        name: "description",
-        content: "Hearth is an independent test kitchen. We write recipes the way we cook them.",
-      },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "About the Hearth Test Kitchen",
+      description: "Hearth is an independent test kitchen publishing practical, tested recipes with honest yields, clear timing, and straightforward cooking instructions.",
+      path: "/about/",
+    }),
 });
 
 function AboutPage() {
@@ -20,6 +19,9 @@ function AboutPage() {
       <main className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-clay">The kitchen</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-ink">How we cook</h1>
+        <div className="mt-8">
+          <NativeBanner />
+        </div>
         <div className="mt-8 space-y-5 text-[17px] leading-relaxed text-ink">
           <p>
             Hearth is a small independent test kitchen. We write the recipes we actually make — weeknight
@@ -31,8 +33,8 @@ function AboutPage() {
             model at 350–400°F, not a toaster-oven impersonator. When a dough is fussy, we say so.
           </p>
           <p>
-            We do not cloak pages, flood them with ads, or treat readers as inventory. If you cook from
-            here, we want the dish to work — that is the entire contract.
+            Hearth is supported by clearly labeled advertising. We keep sponsored placements separate from
+            recipe instructions and navigation so the cooking content remains usable and easy to follow.
           </p>
           <p>
             Salt is Diamond Crystal unless noted. Eggs are large. Oven temperatures are conventional. If

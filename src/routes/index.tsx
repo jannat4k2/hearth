@@ -6,19 +6,18 @@ import { collections, featuredRecipe, recipes } from "@/lib/recipes";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
+import { NativeBanner } from "@/components/ads/adsterra";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  head: () => ({
-    meta: [
-      { title: "Hearth — Recipes worth the pan" },
-      {
-        name: "description",
-        content:
-          "A small test kitchen. Weeknight recipes, air fryer garlic knots, sheet-pan chicken, and cakes that keep.",
-      },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "Hearth — Recipes worth the pan",
+      description:
+        "Tested weeknight recipes, air fryer favorites, one-pan dinners, soups, salads, breakfast, and baking from the Hearth Test Kitchen.",
+      path: "/",
+    }),
 });
 
 function Home() {
@@ -31,6 +30,8 @@ function Home() {
         <img
           src={assetUrl("recipes/hero.jpg")}
           alt="A table set with roasted vegetables, bread, and a glass of wine"
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 size-full object-cover opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/20" />
@@ -67,6 +68,10 @@ function Home() {
         <RecipeCard recipe={featuredRecipe} featured />
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 pb-14 sm:px-6">
+        <NativeBanner />
+      </section>
+
       <section className="bg-paper-2 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mb-8 flex items-end justify-between">
@@ -87,6 +92,8 @@ function Home() {
                 <img
                   src={c.image}
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   className="recipe-img absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />

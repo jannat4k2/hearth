@@ -30,6 +30,9 @@ export function RecipeCard({
         <img
           src={recipe.image}
           alt={recipe.imageAlt}
+          loading={featured ? "eager" : "lazy"}
+          fetchPriority={featured ? "high" : "auto"}
+          decoding="async"
           className="recipe-img size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
         />
       </div>

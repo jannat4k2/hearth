@@ -1,15 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/layout";
 import { collections } from "@/lib/recipes";
+import { NativeBanner } from "@/components/ads/adsterra";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/collections/")({
   component: CollectionsIndex,
-  head: () => ({
-    meta: [
-      { title: "Collections — Hearth" },
-      { name: "description", content: "Keto, weeknight, air fryer, baking, and one-pan collections from the Hearth kitchen." },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "Recipe Collections — Weeknight, Air Fryer, Baking & More | Hearth",
+      description: "Browse Hearth recipe collections for weeknight dinners, air fryer cooking, vegetarian meals, baking, low-carb recipes, and one-pan favorites.",
+      path: "/collections/",
+    }),
 });
 
 function CollectionsIndex() {
@@ -21,6 +23,9 @@ function CollectionsIndex() {
         <p className="mt-3 max-w-xl text-ink-soft">
           Shorthand for how we actually cook: Tuesday night, low carb, one pan, something sweet.
         </p>
+        <div className="mt-10">
+          <NativeBanner />
+        </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {collections.map((c) => (
             <Link
@@ -33,6 +38,8 @@ function CollectionsIndex() {
                 <img
                   src={c.image}
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   className="recipe-img size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>

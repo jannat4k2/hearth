@@ -5,9 +5,11 @@ import { SiteLayout } from "@/components/site/layout";
 import { RecipeCard } from "@/components/site/recipe-card";
 import { CookMode } from "@/components/site/cook-mode";
 import { IngredientList, NutritionPanel, RecipeActions, ServingScaler } from "@/components/site/recipe-tools";
-import { JsonLd, recipeJsonLd } from "@/components/site/json-ld";
+import { JsonLd, breadcrumbJsonLd, recipeJsonLd } from "@/components/site/json-ld";
 import { getRecipe, relatedRecipes } from "@/lib/recipes";
 import { formatMinutes } from "@/lib/format";
+import { NativeBanner } from "@/components/ads/adsterra";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/recipes/$slug")({
   loader: ({ params }) => {
@@ -15,12 +17,17 @@ export const Route = createFileRoute("/recipes/$slug")({
     if (!recipe) throw notFound();
     return recipe;
   },
-  head: ({ loaderData }) => ({
-    meta: [
-      { title: `${loaderData?.title ?? "Recipe"} — Hearth` },
-      { name: "description", content: loaderData?.dek ?? "A Hearth recipe." },
-    ],
-  }),
+  head: ({ loaderData }) =>
+    seoHead({
+      title: `${loaderData?.title ?? "Recipe"} Recipe — Hearth`,
+      description: loaderData?.dek ?? "A tested Hearth recipe.",
+      path: `/recipes/${loaderData?.slug ?? ""}/`,
+      image: loaderData?.image,
+      type: "article",
+      extraMeta: loaderData?.published
+        ? [{ property: "article:published_time", content: loaderData.published }]
+        : [],
+    }),
   component: RecipePage,
   notFoundComponent: () => (
     <SiteLayout>
@@ -44,6 +51,13 @@ function RecipePage() {
   return (
     <SiteLayout>
       <JsonLd data={recipeJsonLd(recipe)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Recipes", path: "/recipes/" },
+          { name: recipe.title, path: `/recipes/${recipe.slug}/` },
+        ])}
+      />
       <article className="recipe-print mx-auto max-w-6xl px-4 py-8 sm:px-6">
         <nav className="no-print mb-5 text-sm text-ink-faint">
           <Link to="/" className="hover:text-ink">
@@ -58,7 +72,13 @@ function RecipePage() {
         </nav>
 
         <div className="overflow-hidden rounded-xl">
-          <img src={recipe.image} alt={recipe.imageAlt} className="recipe-img aspect-[16/10] w-full object-cover sm:aspect-[2/1]" />
+          <img
+            src={recipe.image}
+            alt={recipe.imageAlt}
+            fetchPriority="high"
+            decoding="async"
+            className="recipe-img aspect-[16/10] w-full object-cover sm:aspect-[2/1]"
+          />
         </div>
 
         <header className="mx-auto mt-8 max-w-3xl">
@@ -99,6 +119,10 @@ function RecipePage() {
 
         <div className="mx-auto mt-10 max-w-3xl">
           <p className="text-base leading-relaxed text-ink">{recipe.story}</p>
+        </div>
+
+        <div className="mt-10">
+          <NativeBanner />
         </div>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] lg:items-start">

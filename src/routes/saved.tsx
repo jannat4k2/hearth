@@ -4,15 +4,18 @@ import { SiteLayout } from "@/components/site/layout";
 import { RecipeGrid } from "@/components/site/recipe-card";
 import { useFavorites } from "@/lib/favorites";
 import { getRecipe, type Recipe } from "@/lib/recipes";
+import { NativeBanner } from "@/components/ads/adsterra";
+import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/saved")({
   component: SavedPage,
-  head: () => ({
-    meta: [
-      { title: "Saved recipes — Hearth" },
-      { name: "description", content: "Recipes you have saved on this device." },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "Saved Recipes — Hearth",
+      description: "Recipes saved in your browser on this device.",
+      path: "/saved/",
+      noindex: true,
+    }),
 });
 
 function SavedPage() {
@@ -26,6 +29,9 @@ function SavedPage() {
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-clay">On this device</p>
         <h1 className="mt-2 font-display text-4xl font-semibold text-ink">Saved</h1>
+        <div className="mt-8">
+          <NativeBanner />
+        </div>
         {!ready ? (
           <p className="mt-10 text-sm text-ink-faint">Loading saved recipes…</p>
         ) : list.length === 0 ? (

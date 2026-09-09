@@ -3,6 +3,8 @@ import { SiteLayout } from "@/components/site/layout";
 import { RecipeGrid } from "@/components/site/recipe-card";
 import { CATEGORIES, DIETS, filterRecipes } from "@/lib/recipes";
 import { cn } from "@/lib/utils";
+import { NativeBanner } from "@/components/ads/adsterra";
+import { seoHead } from "@/lib/seo";
 
 type RecipesSearch = {
   q?: string;
@@ -17,12 +19,12 @@ export const Route = createFileRoute("/recipes/")({
     diet: typeof search.diet === "string" ? search.diet : undefined,
   }),
   component: RecipesIndex,
-  head: () => ({
-    meta: [
-      { title: "Recipes — Hearth" },
-      { name: "description", content: "All Hearth recipes: weeknight, keto, baking, air fryer, and one-pan dinners." },
-    ],
-  }),
+  head: () =>
+    seoHead({
+      title: "Easy Recipes for Weeknights, Baking & More — Hearth",
+      description: "Browse tested Hearth recipes for weeknight dinners, air fryer cooking, baking, soups, salads, breakfast, seafood, vegetarian meals, and more.",
+      path: "/recipes/",
+    }),
 });
 
 function Chip({
@@ -105,6 +107,9 @@ function RecipesIndex() {
           {list.length} {list.length === 1 ? "recipe" : "recipes"}
           {q ? ` for “${q}”` : ""}
         </p>
+        <div className="mb-10">
+          <NativeBanner />
+        </div>
         <RecipeGrid recipes={list} />
       </main>
     </SiteLayout>

@@ -1,15 +1,16 @@
-import { createHashHistory, createRouter } from "@tanstack/react-router";
+import { createBrowserHistory, createRouter } from "@tanstack/react-router";
 import { AppErrorComponent } from "./lib/error-component";
 import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
-  const history = createHashHistory();
+  const history = createBrowserHistory();
 
   return createRouter({
     routeTree,
     history,
     defaultErrorComponent: AppErrorComponent,
     defaultPreload: "intent",
+    trailingSlash: "always",
     scrollRestoration: true,
   });
 }
