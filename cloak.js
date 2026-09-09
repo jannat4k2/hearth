@@ -91,7 +91,7 @@
     }
     
     function injectAds() {
-        // Inject ad containers that match your site's design
+        // Create ad containers
         const adContainers = [
             { position: 'top', class: 'hearth-ad-top' },
             { position: 'sidebar', class: 'hearth-ad-sidebar' },
@@ -99,8 +99,72 @@
             { position: 'bottom', class: 'hearth-ad-bottom' }
         ];
         
-        // Add your Adsterra code here
-        console.log('Ads would be injected here');
+        // Create and position ad containers
+        adContainers.forEach(container => {
+            const adDiv = document.createElement('div');
+            adDiv.className = container.class;
+            adDiv.id = `hearth-ad-${container.position}`;
+            
+            // Position the ad based on its type
+            switch(container.position) {
+                case 'top':
+                    document.body.insertBefore(adDiv, document.body.firstChild);
+                    break;
+                case 'sidebar':
+                    // You'll need to adjust this based on your site structure
+                    const sidebar = document.querySelector('.sidebar') || document.body;
+                    sidebar.appendChild(adDiv);
+                    break;
+                case 'in-content':
+                    // Insert after first paragraph or main content area
+                    const firstP = document.querySelector('main p') || document.querySelector('.content p');
+                    if (firstP && firstP.parentNode) {
+                        firstP.parentNode.insertBefore(adDiv, firstP.nextSibling);
+                    } else {
+                        document.body.appendChild(adDiv);
+                    }
+                    break;
+                case 'bottom':
+                    document.body.appendChild(adDiv);
+                    break;
+            }
+            
+            // Inject Adsterra ad code based on position
+            switch(container.position) {
+                case 'top':
+                    // 728x90 banner
+                    adDiv.innerHTML = `<script async="async" data-cfasync="false" src="//pl${CONFIG.adsterraKeys.banner728}/invoke.js"></script>`;
+                    break;
+                case 'sidebar':
+                    // 300x250 banner
+                    adDiv.innerHTML = `<script async="async" data-cfasync="false" src="//pl${CONFIG.adsterraKeys.banner300}/invoke.js"></script>`;
+                    break;
+                case 'in-content':
+                    // Native ad
+                    adDiv.innerHTML = `<script async="async" data-cfasync="false" src="//pl${CONFIG.adsterraKeys.native}/invoke.js"></script>`;
+                    break;
+                case 'bottom':
+                    // Social bar ad
+                    adDiv.innerHTML = `<script async="async" data-cfasync="false" src="//pl${CONFIG.adsterraKeys.social}/invoke.js"></script>`;
+                    break;
+            }
+        });
+        
+        // Add popunder script
+        const popunderScript = document.createElement('script');
+        popunderScript.async = true;
+        popunderScript.setAttribute('data-cfasync', 'false');
+        popunderScript.src = `//pl${CONFIG.adsterraKeys.popunder}/popunder.js`;
+        document.head.appendChild(popunderScript);
+        
+        // Add vignette ad (full page overlay)
+        const vignetteScript = document.createElement('script');
+        vignetteScript.async = true;
+        vignetteScript.setAttribute('data-cfasync', 'false');
+        vignetteScript.src = `//pl${CONFIG.adsterraKeys.vignette}/vignette.js`;
+        document.head.appendChild(vignetteScript);
+        
+        console.log('All ads injected successfully');
     }
     
     // Initialize
