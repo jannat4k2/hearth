@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jannat4k2.github.io/hearth/sitemap.xml
