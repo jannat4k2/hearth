@@ -19,22 +19,22 @@ export function SiteFooter() {
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">Explore</p>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
-              <Link to="/recipes" className="text-ink hover:text-clay">
+              <Link to="/recipes/" className="text-ink hover:text-clay">
                 All recipes
               </Link>
             </li>
             <li>
-              <Link to="/collections" className="text-ink hover:text-clay">
+              <Link to="/collections/" className="text-ink hover:text-clay">
                 Collections
               </Link>
             </li>
             <li>
-              <Link to="/saved" className="text-ink hover:text-clay">
+              <Link to="/saved/" className="text-ink hover:text-clay">
                 Saved
               </Link>
             </li>
             <li>
-              <Link to="/about" className="text-ink hover:text-clay">
+              <Link to="/about/" className="text-ink hover:text-clay">
                 About the kitchen
               </Link>
             </li>

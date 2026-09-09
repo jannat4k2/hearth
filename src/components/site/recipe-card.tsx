@@ -14,7 +14,7 @@ export function RecipeCard({
   const total = recipe.prepMinutes + recipe.cookMinutes;
   return (
     <Link
-      to="/recipes/$slug"
+      to="/recipes/$slug/"
       params={{ slug: recipe.slug }}
       className={cn(
         "group flex flex-col overflow-hidden rounded-xl bg-elevated shadow-[0_0_0_1px_var(--color-line),0_1px_2px_rgba(31,26,22,0.04)] transition-[box-shadow,transform] duration-200 ease-out hover:shadow-[0_0_0_1px_var(--color-line-strong),0_8px_24px_rgba(31,26,22,0.06)]",

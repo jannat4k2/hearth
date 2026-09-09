@@ -44,11 +44,11 @@ function Home() {
             Tested twice. Written in minutes and grams. Built for Tuesday night, not a photoshoot.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/recipes" className={cn(buttonVariants({ variant: "primary", size: "lg" }))}>
+            <Link to="/recipes/" className={cn(buttonVariants({ variant: "primary", size: "lg" }))}>
               Browse recipes
             </Link>
             <Link
-              to="/recipes/$slug"
+              to="/recipes/$slug/"
               params={{ slug: featuredRecipe.slug }}
               className={cn(buttonVariants({ variant: "inverse", size: "lg" }))}
             >
@@ -76,7 +76,7 @@ function Home() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mb-8 flex items-end justify-between">
             <h2 className="font-display text-3xl font-semibold text-ink">Collections</h2>
-            <Link to="/collections" className="hidden items-center gap-1 text-sm font-medium text-clay sm:inline-flex">
+            <Link to="/collections/" className="hidden items-center gap-1 text-sm font-medium text-clay sm:inline-flex">
               All collections
               <ArrowRight className="size-4" />
             </Link>
@@ -85,7 +85,7 @@ function Home() {
             {tiles.map((c) => (
               <Link
                 key={c.slug}
-                to="/collections/$slug"
+                to="/collections/$slug/"
                 params={{ slug: c.slug }}
                 className="group relative aspect-[4/5] overflow-hidden rounded-xl"
               >
@@ -110,7 +110,7 @@ function Home() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="mb-8 flex items-end justify-between">
           <h2 className="font-display text-3xl font-semibold text-ink">From the archive</h2>
-          <Link to="/recipes" className="hidden items-center gap-1 text-sm font-medium text-clay sm:inline-flex">
+          <Link to="/recipes/" className="hidden items-center gap-1 text-sm font-medium text-clay sm:inline-flex">
             All recipes
             <ArrowRight className="size-4" />
           </Link>

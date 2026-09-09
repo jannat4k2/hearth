@@ -34,7 +34,7 @@ export const Route = createFileRoute("/recipes/$slug")({
       <main className="mx-auto max-w-xl px-4 py-24 text-center">
         <h1 className="font-display text-3xl font-semibold">Recipe not found</h1>
         <p className="mt-3 text-ink-soft">That dish is not in the archive.</p>
-        <Link to="/recipes" className="mt-6 inline-block text-sm font-medium text-clay">
+        <Link to="/recipes/" className="mt-6 inline-block text-sm font-medium text-clay">
           Browse recipes
         </Link>
       </main>
@@ -64,7 +64,7 @@ function RecipePage() {
             Home
           </Link>
           <span className="px-2">/</span>
-          <Link to="/recipes" className="hover:text-ink">
+          <Link to="/recipes/" className="hover:text-ink">
             Recipes
           </Link>
           <span className="px-2">/</span>

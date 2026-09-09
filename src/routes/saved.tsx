@@ -40,7 +40,7 @@ function SavedPage() {
             <p className="mx-auto mt-2 max-w-md text-sm text-ink-soft">
               Heart a recipe and it will live here. Saves stay in this browser — no account required.
             </p>
-            <Link to="/recipes" className="mt-6 inline-block text-sm font-medium text-clay">
+            <Link to="/recipes/" className="mt-6 inline-block text-sm font-medium text-clay">
               Browse recipes
             </Link>
           </div>

@@ -30,7 +30,7 @@ function CollectionsIndex() {
           {collections.map((c) => (
             <Link
               key={c.slug}
-              to="/collections/$slug"
+              to="/collections/$slug/"
               params={{ slug: c.slug }}
               className="group overflow-hidden rounded-xl bg-elevated shadow-[0_0_0_1px_var(--color-line)]"
             >

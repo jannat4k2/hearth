@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import { useFavorites } from "@/lib/favorites";
 
 const NAV = [
-  { to: "/recipes", label: "Recipes" },
-  { to: "/collections", label: "Collections" },
-  { to: "/saved", label: "Saved" },
-  { to: "/about", label: "About" },
+  { to: "/recipes/", label: "Recipes" },
+  { to: "/collections/", label: "Collections" },
+  { to: "/saved/", label: "Saved" },
+  { to: "/about/", label: "About" },
 ] as const;
 
 export function SiteHeader() {
@@ -41,7 +41,7 @@ export function SiteHeader() {
   function onSearch(e: React.FormEvent) {
     e.preventDefault();
     const q = query.trim();
-    void navigate({ to: "/recipes", search: { q: q || undefined, cat: undefined, diet: undefined } });
+    void navigate({ to: "/recipes/", search: { q: q || undefined, cat: undefined, diet: undefined } });
     setOpen(false);
   }
 

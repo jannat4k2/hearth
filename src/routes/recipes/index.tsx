@@ -57,7 +57,7 @@ function RecipesIndex() {
 
   function setSearch(next: RecipesSearch) {
     void navigate({
-      to: "/recipes",
+      to: "/recipes/",
       search: {
         q: next.q || undefined,
         cat: next.cat || undefined,
