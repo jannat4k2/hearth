@@ -66,7 +66,7 @@ export function SiteHeader() {
                 )}
               >
                 {item.label}
-                {item.to === "/saved" && shownCount > 0 ? (
+                {item.to === "/saved/" && shownCount > 0 ? (
                   <span className="ml-1.5 tabular-nums text-clay">{shownCount}</span>
                 ) : null}
                 {active ? (
@@ -123,7 +123,7 @@ export function SiteHeader() {
                 className="flex min-h-11 items-center border-b border-line text-base font-medium text-ink last:border-0"
               >
                 {item.label}
-                {item.to === "/saved" && shownCount > 0 ? (
+                {item.to === "/saved/" && shownCount > 0 ? (
                   <span className="ml-2 tabular-nums text-clay">{shownCount}</span>
                 ) : null}
               </Link>
